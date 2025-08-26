@@ -1,5 +1,5 @@
 <?php
-require_once "conexao.php";
+require_once "../conexao.php";
 
 class Livro {
     private $pdo;
@@ -16,6 +16,12 @@ class Livro {
     }
 
     public function criar($titulo, $genero, $ano, $id_autor) {
+        // Validar ano de publicação
+        $ano_atual = date('Y');
+        if ($ano < 1500 || $ano > $ano_atual) {
+            throw new Exception("Ano de publicação deve estar entre 1500 e $ano_atual");
+        }
+        
         $sql = "INSERT INTO livros (titulo, genero, ano_publicacao, id_autor) VALUES (?,?,?,?)";
         $stmt = $this->pdo->prepare($sql);
         return $stmt->execute([$titulo, $genero, $ano, $id_autor]);
