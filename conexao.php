@@ -2,7 +2,7 @@
 $host = "localhost";
 $dbname = "biblioteca_crud";
 $user = "root";
-$pass = ""; // se tiver senha, coloque aqui
+$pass = ""; 
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $pass);
